@@ -122,100 +122,105 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="main">
         <div class="d-flex justify-content-center">
             <div class="card">
-                    <form action="/register" method="POST" style="margin: 20px;">
-                        <p class="text-center">Login Credentials</p>
-                        <div class="input-group">
-                            <label>Username</label>
-                            <input type="text" id="username" name="username" value="<?php echo $username; ?>">
-                            <p class="is-invalid d-none"></p>
-                            <?php if ($nameError) { ?><p class="is-invalid">This name is already taken please try another</p><?php } ?>
-                        </div>
-                        <div class="input-group">
-                            <label>Password</label>
-                            <input type="password" id="password" name="password" value="<?php echo $password; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Password Confirmation</label>
-                            <input type="password" id="password-confirm" name="password-confirm" value="<?php echo $password_confirm; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="line-divider-full"></div>
-                        <p class="text-center">Personal Information</p>
-                        <div class="input-group">
-                            <label>Title</label>
-                            <input list="titles" id="title" name="title" value="<?php echo $title; ?>">
-                            <p class="is-invalid d-none"></p>
-                            <datalist id="titles">
-                                <option value="Mr">
-                                <option value="Mrs">
-                                <option value="Ms">
-                                <option value="Miss">
-                                <option value="Dr">
-                                <option value="Mx">
-                            </datalist>
-                        </div>
-                        <div class="input-group">
-                            <label>First Name</label>
-                            <input type="text" id="fname" name="fname" value="<?php echo $first_name; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Last Name</label>
-                            <input type="text" id="sname" name="sname" value="<?php echo $last_name; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Gender</label>
-                            <select id="gender" name="gender">
-                                <option value="Male" <?php if ($gender == `Male`) { ?> selected='selected' <?php }; ?>>Male</option>
-                                <option value="Female" <?php if ($gender == `Female`) { ?> selected='selected' <?php }; ?>>Female</option>
-                                <option value="Other" <?php if ($gender == `Other`) { ?> selected='selected' <?php }; ?>>Other</option>
-                            </select>
-                        </div>
-                        <div class="line-divider-full"></div>
-                        <p class="text-center">Address</p>
-                        <div class="input-group">
-                            <label>Address Line 1</label>
-                            <input type="text" id="address1" name="address1" value="<?php echo $address1; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Address Line 2</label>
-                            <input type="text" id="address2" name="address2" value="<?php echo $address2; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Address Line 3</label>
-                            <input type="text" id="address3" name="address3" value="<?php echo $address3; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Post Code</label>
-                            <input type="text" id="postcode" name="postcode" value="<?php echo $postcode; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="line-divider-full"></div>
-                        <p class="text-center">Contact Information</p>
-                        <div class="input-group">
-                            <label>Email Address</label>
-                            <input type="email" id="email" name="email" value="<?php echo $email; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <div class="input-group">
-                            <label>Telephone Number</label>
-                            <input type="tel" id="telephone" name="telephone" value="<?php echo $telephone; ?>">
-                            <p class="is-invalid d-none"></p>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="register-submit">Submit</button>
-                    </form>
+                <div class="text-center">
+                    <h2>Register for rentmycar.io</h2>
+                    <p>Enables adding your own cars!</p>
+                </div>
+                <form action="/register" method="POST" style="margin: 20px;">
+                    <div class="line-divider-full"></div>
+                    <p class="text-center">Login Credentials</p>
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="username" name="username" value="<?php echo $username; ?>">
+                        <p class="is-invalid d-none"></p>
+                        <?php if ($nameError) { ?><p class="is-invalid">This name is already taken please try another</p><?php } ?>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" name="password" value="<?php echo $password; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Password Confirmation</label>
+                        <input type="password" id="password-confirm" name="password-confirm" value="<?php echo $password_confirm; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="line-divider-full"></div>
+                    <p class="text-center">Personal Information</p>
+                    <div class="input-group">
+                        <label>Title</label>
+                        <input list="titles" id="title" name="title" value="<?php echo $title; ?>">
+                        <p class="is-invalid d-none"></p>
+                        <datalist id="titles">
+                            <option value="Mr">
+                            <option value="Mrs">
+                            <option value="Ms">
+                            <option value="Miss">
+                            <option value="Dr">
+                            <option value="Mx">
+                        </datalist>
+                    </div>
+                    <div class="input-group">
+                        <label>First Name</label>
+                        <input type="text" id="fname" name="fname" value="<?php echo $first_name; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Last Name</label>
+                        <input type="text" id="sname" name="sname" value="<?php echo $last_name; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="Male" <?php if ($gender == `Male`) { ?> selected='selected' <?php }; ?>>Male</option>
+                            <option value="Female" <?php if ($gender == `Female`) { ?> selected='selected' <?php }; ?>>Female</option>
+                            <option value="Other" <?php if ($gender == `Other`) { ?> selected='selected' <?php }; ?>>Other</option>
+                        </select>
+                    </div>
+                    <div class="line-divider-full"></div>
+                    <p class="text-center">Address</p>
+                    <div class="input-group">
+                        <label>Address Line 1</label>
+                        <input type="text" id="address1" name="address1" value="<?php echo $address1; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Address Line 2</label>
+                        <input type="text" id="address2" name="address2" value="<?php echo $address2; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Address Line 3</label>
+                        <input type="text" id="address3" name="address3" value="<?php echo $address3; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Post Code</label>
+                        <input type="text" id="postcode" name="postcode" value="<?php echo $postcode; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="line-divider-full"></div>
+                    <p class="text-center">Contact Information</p>
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" name="email" value="<?php echo $email; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <div class="input-group">
+                        <label>Telephone Number</label>
+                        <input type="tel" id="telephone" name="telephone" value="<?php echo $telephone; ?>">
+                        <p class="is-invalid d-none"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="register-submit">Submit</button>
+                </form>
             </div>
         </div>
     </div>
     <div>
         <!-- Footer content -->
     </div>
-<script src="/public/js/register.js"></script>
-<script src="/public/js/app.js"></script>
+    <script src="/public/js/register.js"></script>
+    <script src="/public/js/app.js"></script>
 </body>
 </html>

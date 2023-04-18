@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="main">
         <div class="d-flex justify-content-center">
             <div class="card text-center">
+                <h2>Login to rentmycar.io</h2>
                 <form action="/login" method="POST">
                     <div class="input-group-login">
                         <label>Username</label>

@@ -30,6 +30,7 @@ $result = $stmt->get_result();
         <?php include('./partials/navbar.php') ?>
     </div>
     <div id="main">
+        <h1 class="text-center">Welcome to RentMyCar.io!</h1>
         <div class="container">
             <div class="row">
                 <?php

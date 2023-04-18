@@ -3,14 +3,18 @@ include('./functions/conn.php');
 include('./functions/is_logged_in.php');
 include('./functions/init.php');
 
-// Will get the constraints
+// Will get the constraints objects from an external json file and save it to a local variable
 $constraints = json_decode(file_get_contents("./json/constraints.json"), true);
 
+//Used to verify whether there is any invalid data
 $nameError = false;
 
+//Prevent logged in users from registering
 if (is_logged_in()) {
     header('Location: /');
 }
+
+//Simply function which takes in a value and a constraints object and will perform comparisons to see if the data is valid
 function validateField ($value, $local_constraints, $id) {
     if ($local_constraints['confirm'] && !($value == $_POST[$local_constraints['confirm']])) {
         return false;
@@ -23,6 +27,7 @@ function validateField ($value, $local_constraints, $id) {
     }
 }
 
+//Define the default values so that they can be used to re populate the fields if the user enteres incorrect information
 $username = '';
 $password = '';
 $password_confirm = '';
@@ -38,9 +43,9 @@ $email = '';
 $telephone = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //var_dump($constraints);
     $allDataValid = true;
 
+    // Check to make sure the username is free
     $stmt = $conn->prepare("SELECT Count(*) As Count FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     
@@ -52,9 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $row = $result->fetch_assoc();
     
     if ($row['Count'] == 1) {
+        //User name is not free and the request will not be able to proceed
         $nameError = true;
     }
 
+    //Loop through each input data value and verify they meet the constraints defined
     foreach ($_POST as $key => $value) {
         $checkedValue = validateField($value, $constraints[$key], $key);
         if ($checkedValue == false) {
@@ -62,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
+    // Assign post variables to local variables
     $username = $_POST['username'];
     $password = $_POST['password'];
     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -77,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $telephone = $_POST['telephone'];
     
+    //Will perform a check, if all data is valid, as in there were no errors detected, and also $row count == 0, which means there are no duplicate entries for the names the database can then enter the data
     if ($allDataValid && $row['Count'] == 0) {
         $stmt = $conn->prepare("INSERT INTO users SET username = ?, PASSWORD = ?, title = ?, first_name = ?, last_name = ?, gender = ?, address1 = ?, address2 = ?, address3 = ?, postcode = ?, email = ?, telephone = ?");
         $stmt->bind_param("ssssssssssss", $username, $hashed_password, $title, $first_name, $last_name, $gender, $address1, $address2, $address3, $postcode, $email, $telephone);
@@ -86,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         var_dump($result);
 
+        // Automatically log the user in
         $_SESSION['user_id'] = $result;
 
         header('Location: /');

@@ -3,6 +3,7 @@ include('../functions/conn.php');
 include('../functions/is_logged_in.php');
 include('../functions/init.php'); 
 
+//If user is not logged in prevent them from accessing the page
 if (!is_logged_in()) {
     header('Location: /');
 }

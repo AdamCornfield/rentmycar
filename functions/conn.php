@@ -1,4 +1,5 @@
 <?php 
+// Defines the variables used to make a database connection, is referenced by many other files
 $servername = "localhost";
 $username = "root";
 $password = "";

@@ -1,4 +1,5 @@
 # rentmycar
+All code can also be viewed on the github repository here: https://github.com/AdamCornfield/rentmycar
 
 # Disclaimer:
 All work in this project is my own unless specifically stated otherwise.
@@ -8,6 +9,8 @@ bootstrap-grid.css.map
 bootstrap-utilities.css
 bootstrap-utilities.css.map
 bootstrap.css
+
+All images used are either my own or copyright free as provided by https://www.pexels.com/license/
 
 # Version details:
 PHP: v8.2.0
@@ -36,5 +39,3 @@ If you are experiencing issues ensure that your credentials to the mysql databas
 It is reccomended when using the website to create your own account however for the sake of example the credentials for the test account are username: test password: test
 
 A prehosted demo version will be available for testing at https://rentmycar.cornfield.dev if i am able to get it working correctly.
-
-All code can also be viewed on the github repository here: https://github.com/AdamCornfield/rentmycar

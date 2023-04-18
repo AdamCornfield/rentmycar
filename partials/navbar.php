@@ -1,5 +1,9 @@
+<!-- A centralised component for the nav bar so that all pages will reference one point and it will remain conwsistant -->
 <nav>
     <a class="page-title" href="/">rentmycar.io</a>
+    <?php if (is_logged_in()) { ?>
+        <a class="nav-link" href="/rentals">Edit Car Data</a>
+    <?php } ?>
     <div class="nav-link ml-auto">
         <?php if (is_logged_in()) { ?>
             <div class="dropdown">

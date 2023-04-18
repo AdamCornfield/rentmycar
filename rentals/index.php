@@ -3,6 +3,7 @@ include('../functions/conn.php');
 include('../functions/is_logged_in.php');
 include('../functions/init.php'); 
 
+//If user is not logged in prevent them from accessing the page
 if (!is_logged_in()) {
     header('Location: /');
 }
@@ -28,6 +29,7 @@ if (!is_logged_in()) {
             <label for="img-upload">Choose a file</label>
             <img src="" id="img-preview">
             <button type="button" class="btn btn-success w-full d-none" id="img-upload-btn">Upload Image</button>
+            <button type="button" class="btn btn-warning mt-4" id="img-upload-cancel">Cancel Upload</button>
         </div>
 
     </div>

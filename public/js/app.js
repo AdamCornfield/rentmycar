@@ -1,3 +1,4 @@
+//Provides functionality for the dropdown
 function navbarDropdown() {
     document.getElementById("myDropdown").classList.add("show");
 }

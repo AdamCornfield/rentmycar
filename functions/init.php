@@ -1,4 +1,5 @@
 <?php 
+//Starts the page session and will save the user's data if they are logged in to local storage each time the user changes pages
 session_start(); 
 
 if (is_logged_in()) {

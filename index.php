@@ -1,8 +1,10 @@
 <?php
+//Default imports to set up the page correctly
 include('./functions/conn.php');
 include('./functions/is_logged_in.php');
 include('./functions/init.php'); 
 
+//Get all vehicle details from the database to display to the user
 $stmt = $conn->prepare("SELECT * FROM vehicle_details ORDER BY vehicle_id DESC");
 
 $stmt->execute();
@@ -31,6 +33,7 @@ $result = $stmt->get_result();
         <div class="container">
             <div class="row">
                 <?php
+                    // Loop through every entry in the database and display them on the page
                     while($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="col-4 p-4">
                             <div class="card w-full">

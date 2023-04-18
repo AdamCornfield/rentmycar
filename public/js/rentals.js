@@ -1,3 +1,4 @@
+// Defines constraints to be used for the vehicle data entry
 let constraints = {
     vehicle_make: {
         min: 1,
@@ -46,6 +47,7 @@ let constraints = {
     }
 }
 
+// This web page works using a dynamic set up, every time a change is made a request is made to the server to get the updated table information, however only the table information is gathered and is placed into the table without a page reload
 function refreshTable () {
     fetch("/rentals/all_vehicles", {
         method: 'GET',
@@ -61,9 +63,11 @@ function refreshTable () {
     })
 }
 
+//Re-runs the query selectors since the page content is now different and the query selectors would have been deleted, in essence re-loads the javascript
 function refreshQuerySelectors () {
     document.querySelectorAll('.rentals-input').forEach(element => {
         element.addEventListener('change', (e) => {
+            //Fetch is similar to AJAX but a more modern varitation, here it is sending data to the edit_vehicle endpoint
             fetch("/rentals/edit_vehicle", {
                 method: 'POST',
                 headers: {
@@ -82,6 +86,7 @@ function refreshQuerySelectors () {
         })
     })
     
+    //Used to delete a vehicle, takes the vehicle id
     document.querySelectorAll('.car-delete').forEach(element => {
         element.addEventListener('click', (e) => {
             fetch("/rentals/delete_vehicle", {
@@ -100,6 +105,7 @@ function refreshQuerySelectors () {
         })
     })
     
+    //Here two different query selectors are used since it is possible to trigger the add feature by either pressing enter or clicking the add button
     document.querySelectorAll('.car-add').forEach(element => {
         element.addEventListener('click', carAdd)
     })
@@ -112,24 +118,34 @@ function refreshQuerySelectors () {
         })
     })
 
+    // This function will add cars to the database
     function carAdd (e) {
+        //Creates an array of all the inputs there are in this table row
         let nodes = e.target.parentElement.parentElement.childNodes
         var data = {}
         var valid_data = true
 
+        // Loops through each node
         nodes.forEach(element => {
             let input = element.childNodes[0]
             
-            if (element.tagName == "TD" && !input.getAttribute("readonly") && input.textContent != "Add") {
+            //Will only run the code on elements with the tag "TG" that are not read only and are also not the add button itself]
+            if (element.tagName == "TD" && !!input && input.tagName == "INPUT" && !input.getAttribute("readonly") && input.textContent != "Add") {
+                console.log(input)
+                //Runs the validate field function to verify the data
                 let checkedValue = validateField(input.value, constraints[input.name])
+
+                //selects the tool tip
                 let tooltip = input.parentElement.childNodes[1]
 
                 if (checkedValue) {
+                    // This will run if checked Value returns true, which means that there was an error in the data, this will then be sent to the tool tips and displayed to the user
                     valid_data = false
                     input.classList.add("error-border")
                     tooltip.textContent = checkedValue
                     tooltip.classList.add("visible")
                 } else {
+                    // if data checks are not required do not add a border or make the tooltip visible
                     if (constraints[input.name].required) {
                         input.classList.remove("error-border")
                         tooltip.classList.remove("visible")
@@ -139,6 +155,7 @@ function refreshQuerySelectors () {
             }
         })
 
+        //If all data is proved to be valid add data to the database
         if (valid_data) {
             fetch("/rentals/add_vehicle", {
                 method: 'POST',
@@ -173,14 +190,15 @@ function refreshQuerySelectors () {
         }
     }
     
+    //Load preview image whenever an image is placed into the uploader
     document.getElementById("img-upload").addEventListener('change', (e) => {
-        //console.log(e.target.files[0])
         
         document.getElementById("img-preview").src = createObjectURL(e.target.files[0])
     
         document.getElementById("img-upload-btn").classList.remove("d-none")
     })
     
+    // Take the image uploaded to the clientside and send to the server side
     document.getElementById("img-upload-btn").addEventListener('click', (e) => {
         var data = new FormData()
         data.append('file', document.getElementById("img-upload").files[0])
@@ -192,6 +210,7 @@ function refreshQuerySelectors () {
         })
         .then(res => res.text())
         .then(data => {
+            // close the modal and update the table information with the new url information
             document.getElementById("myModal").classList.remove('d-block')
             document.getElementById("rentals-add-img").outerHTML = '<input type="text" name="image_url" class="table-input rentals-add" value="/public/img/uploads/' + data + '.png">'
             document.getElementById("img-preview").src = ""
@@ -201,6 +220,10 @@ function refreshQuerySelectors () {
     
     document.getElementById("rentals-add-img").addEventListener('click', (e) => {
         document.getElementById("myModal").classList.add('d-block')
+    })
+    
+    document.getElementById("img-upload-cancel").addEventListener('click', (e) => {
+        document.getElementById("myModal").classList.remove('d-block')
     })
     
     function createObjectURL(object) {

@@ -1,22 +1,35 @@
 # rentmycar
 All code can also be viewed on the github repository here: https://github.com/AdamCornfield/rentmycar
 
+
 # Disclaimer:
 All work in this project is my own unless specifically stated otherwise.
 Specifically all content within the following files is **not** my own work and is the standard bootsrap css framework, with no js libraries.
+
 bootstrap-grid.css
+
 bootstrap-grid.css.map
+
 bootstrap-utilities.css
+
 bootstrap-utilities.css.map
+
 bootstrap.css
+
 
 All images used are either my own or copyright free as provided by https://www.pexels.com/license/
 
+
 # Version details:
+
 PHP: v8.2.0
+
 Apache: v2.4.54.2
+
 MySQL: v8.0.31
+
 Windows: 10.0.19044 Build 19044
+
 
 # Installation instructions:
 1. Install wamp server, this is used to host the files.
@@ -32,6 +45,7 @@ Link can be found here: https://sourceforge.net/projects/wampserver/ or through 
 10. once that is done you need to right click on the wamp icon on the system tray at the bottom and go to tools>restart DNS.
 11. If you have done everything correctly you should now be able to go to http://localhost again and you will now see a new entry under "Your VirtualHost" for what you set the virtual host name to earlier.
 12. You are now loaded into the rentmycar.io website!
+
 
 # Important notes:
 If you are experiencing issues ensure that your credentials to the mysql database is set to root and no password as well as ensuring that the port is set to 3306 (this is the default so unless you have modified it this should not be an issue.)

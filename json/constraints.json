@@ -2,7 +2,8 @@
     "username": {
         "min": 2,
         "max": 20,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "password": {
         "min": 2,
@@ -19,51 +20,61 @@
     "title": {
         "min": 1,
         "max": 10,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "fname": {
         "min": 2,
         "max": 50,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "sname": {
         "min": 2,
         "max": 50,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "gender": {
         "min": 2,
         "max": 7,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "address1": {
         "min": 1,
         "max": 50,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "address2": {
         "min": 0,
         "max": 50,
-        "required": false
+        "required": false,
+        "confirm": ""
     },
     "address3": {
         "min": 0,
         "max": 50,
-        "required": false
+        "required": false,
+        "confirm": ""
     },
     "postcode": {
         "min": 6,
-        "max": 7,
-        "required": true
+        "max": 8,
+        "required": true,
+        "confirm": ""
     },
     "email": {
         "min": 2,
         "max": 100,
-        "required": true
+        "required": true,
+        "confirm": ""
     },
     "telephone": {
         "min": 2,
         "max": 15,
-        "required": true
+        "required": true,
+        "confirm": ""
     }
 }

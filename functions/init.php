@@ -1,9 +1,6 @@
 <?php 
 session_start(); 
 
-include('./functions/conn.php');
-include('./functions/is_logged_in.php');
-
 if (is_logged_in()) {
     $stmt = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
     $stmt->bind_param("s", $user_id);
@@ -12,6 +9,7 @@ if (is_logged_in()) {
 
     $stmt->execute();
 
-    $userdata = $stmt->get_result();
+    $result = $stmt->get_result();
+    $userdata = $result->fetch_assoc();
 }
 ?>

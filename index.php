@@ -1,4 +1,15 @@
-<?php include('./functions/init.php') ?>
+<?php
+include('./functions/conn.php');
+include('./functions/is_logged_in.php');
+include('./functions/init.php'); 
+
+$stmt = $conn->prepare("SELECT * FROM vehicle_details ORDER BY vehicle_id DESC");
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +28,25 @@
         <?php include('./partials/navbar.php') ?>
     </div>
     <div id="main">
-        <div class="card">
+        <div class="container">
+            <div class="row">
+                <?php
+                    while($row = mysqli_fetch_assoc($result)) { ?>
+                        <div class="col-4 p-4">
+                            <div class="card w-full">
+                                <img src="<?php echo $row['image_url'] ?>" class="img-previews mt-0">
+                                <h4 class="mt-0"><?php echo $row['year']." ".$row['vehicle_make']." ".$row['vehicle_model'] ?></h4>
+                                <a class="btn btn-info" href="/cars?vehicle_id=<?php echo $row['vehicle_id'] ?>">See More</a>
+                            </div>
+                        </div>
+                    <?php }
+                ?>
+            </div>
         </div>
     </div>
     <div>
         <!-- Footer content -->
     </div>
+<script src="/public/js/app.js"></script>
 </body>
 </html>

@@ -1,28 +1,31 @@
-<?php include('./functions/init.php') ?>
 <?php
-    if (is_logged_in()) {
+include('./functions/conn.php');
+include('./functions/is_logged_in.php');
+include('./functions/init.php');
+
+if (is_logged_in()) {
+    header('Location: /');
+}
+$request_invalid = false;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    
+    if (password_verify($password, $row['PASSWORD'])) {
+        $_SESSION['user_id'] = $row['user_id'];
         header('Location: /');
+    } else {
+        $request_invalid = true;
     }
-    $request_invalid = false;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND PASSWORD = ?");
-        $stmt->bind_param("ss", $username, $password);
-    
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-    
-        $stmt->execute();
-    
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-    
-        if ($result->num_rows == 1 && $row['username'] === $_POST['username'] && $row['PASSWORD'] === $_POST['password']) {
-            $_SESSION['user_id'] = $row['user_id'];
-            header('Location: /');
-        } else {
-            $request_invalid = true;
-        }
-    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,5 +72,6 @@
     <div>
         <!-- Footer content -->
     </div>
+<script src="/public/js/app.js"></script>
 </body>
 </html>

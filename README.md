@@ -1,7 +1,7 @@
 # rentmycar
 All code can also be viewed on the github repository here: https://github.com/AdamCornfield/rentmycar
 
-***NOTE:** The database has been modified to correct spelling mistakes and as such when testing it is crucial that you use the database file provided in the project folder.
+**NOTE:** The database has been modified to correct spelling mistakes and as such when testing it is crucial that you use the database file provided in the project folder.
 
 
 # Disclaimer:

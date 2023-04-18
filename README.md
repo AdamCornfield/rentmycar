@@ -3,7 +3,7 @@ All code can also be viewed on the github repository here: https://github.com/Ad
 
 # Disclaimer:
 All work in this project is my own unless specifically stated otherwise.
-This includes all contents within:
+Specifically all content within the following files is **not** my own work and is the standard bootsrap css framework, with no js libraries.
 bootstrap-grid.css
 bootstrap-grid.css.map
 bootstrap-utilities.css
